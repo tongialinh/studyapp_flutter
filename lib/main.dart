@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget{
       theme: Get.find<ThemeController>().lightTheme,
      //  home: SplashScreen()
       getPages: AppRoutes.routes(),
-
+      debugShowCheckedModeBanner: false,
     );
 
   }
@@ -36,7 +36,6 @@ Future<void> main() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   InitialBindings().dependencies();
   runApp(const MyApp());
-  //debugPaintSizeEnabled = false;
   //runApp(GetMaterialApp(home: DataUploaderScreen()));
 }
 

@@ -2,11 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:studyapp_flutter/configs/themes/custom_text_styles.dart';
+import 'package:studyapp_flutter/configs/themes/ui_parameters.dart';
 import 'package:studyapp_flutter/controllers/question_papers/questions_controller.dart';
 import 'package:studyapp_flutter/screens/question/result_screen.dart';
 import 'package:studyapp_flutter/widgets/common/background_decoration.dart';
 import 'package:studyapp_flutter/widgets/common/custom_app_bar.dart';
-import 'package:studyapp_flutter/widgets/content_area.dart';
+import 'package:studyapp_flutter/widgets/common/content_area.dart';
+import 'package:studyapp_flutter/widgets/common/main_button.dart';
 import 'package:studyapp_flutter/widgets/questions/answer_card.dart';
 
 class AnswerCheckScreen extends GetView<QuestionsController> {
@@ -84,7 +86,38 @@ class AnswerCheckScreen extends GetView<QuestionsController> {
                           ],
                         ),
                       ),
-                    ) )
+                    ) ),
+                ColoredBox(
+                  color: Theme.of(context).scaffoldBackgroundColor,
+                  child: Padding(
+                    padding: UIParamenters.mobileScreenPadding,
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          height: 55,
+                          width: 55,
+                          child: MainButton(
+                            onTap: () {
+                              controller.precQuestion();
+                            },
+                            child: const Icon(Icons.arrow_back_ios_new),
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 5,
+                        ),
+                        Expanded(
+                          child: MainButton(
+                            onTap: () {
+                              controller.nextQuestion();
+                            },
+                            title: 'Next',
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )
               ],
             )
         ),

@@ -6,7 +6,7 @@ import 'package:studyapp_flutter/controllers/question_papers/questions_controlle
 import 'package:studyapp_flutter/widgets/common/background_decoration.dart';
 import 'package:studyapp_flutter/widgets/common/custom_app_bar.dart';
 import 'package:studyapp_flutter/widgets/common/main_button.dart';
-import 'package:studyapp_flutter/widgets/content_area.dart';
+import 'package:studyapp_flutter/widgets/common/content_area.dart';
 import 'package:studyapp_flutter/widgets/questions/answer_card.dart';
 import 'package:studyapp_flutter/widgets/questions/countdown_timer.dart';
 import 'package:studyapp_flutter/widgets/questions/question_number_card.dart';

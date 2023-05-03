@@ -12,8 +12,8 @@ import 'package:studyapp_flutter/controllers/question_papers/question_paper_cont
 import 'package:studyapp_flutter/controllers/zoom_drawer_controller.dart';
 import 'package:studyapp_flutter/screens/home/menu_screen.dart';
 import 'package:studyapp_flutter/screens/home/question_card.dart';
-import 'package:studyapp_flutter/widgets/app_circle_button.dart';
-import 'package:studyapp_flutter/widgets/content_area.dart';
+import 'package:studyapp_flutter/widgets/common/app_circle_button.dart';
+import 'package:studyapp_flutter/widgets/common/content_area.dart';
 
 class HomeScreen extends GetView<MyZoomDrawerController> {
   const HomeScreen({Key? key}) : super(key: key);

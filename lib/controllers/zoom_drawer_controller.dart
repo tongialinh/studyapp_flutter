@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_zoom_drawer/config.dart';
 import 'package:get/get.dart';
 import 'package:studyapp_flutter/controllers/auth_controller.dart';
+import 'package:studyapp_flutter/screens/leaderboard/leaderboard_screen.dart';
 
 class MyZoomDrawerController extends GetxController {
   final zoomDrawerController = ZoomDrawerController();
@@ -22,11 +23,12 @@ class MyZoomDrawerController extends GetxController {
     Get.find<AuthController>().signOut();
   }
   void signIn() {
-
+    Get.find<AuthController>().navigateToLoginPage();
   }
 
   void score() {
-    _launch(("https://www.youtube.com"));
+
+    Get.toNamed(LeaderBoardScreen.routeName);
   }
   /*void facebook() {
     _launch(("https://www.facebook.com"));
@@ -47,6 +49,4 @@ class MyZoomDrawerController extends GetxController {
   }
 
   launch(String url) {}
-
-
 }

@@ -13,25 +13,10 @@ class AuthController extends GetxController{
     initAuth();
     super.onReady();
   }
-  // final FirebaseAuth _auth = FirebaseAuth.instance;
-  // final GoogleSignIn googleSignIn = GoogleSignIn();
-   late FirebaseAuth _auth;
-
+  late FirebaseAuth _auth;
   final _user = Rxn<User>();
   late Stream<User?> _authStateChanges;
 
- /* Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleSignInAccount = await googleSignIn.signIn();
-    final GoogleSignInAuthentication googleSignInAuthentication =
-    await googleSignInAccount!.authentication;
-
-    final AuthCredential credential = GoogleAuthProvider.credential(
-      accessToken: googleSignInAuthentication.accessToken,
-      idToken: googleSignInAuthentication.idToken,
-    );
-
-    return await _auth.signInWithCredential(credential);
-  }*/
 
   void initAuth() async {
     await Future.delayed(const Duration(seconds: 2));
@@ -43,7 +28,7 @@ class AuthController extends GetxController{
     navigateToIntroduction();
   }
 
-  signInWithGoogle() async {
+  Future<void> signInWithGoogle() async  {
     final GoogleSignIn _googleSignIn =  GoogleSignIn();
     try{
       GoogleSignInAccount? account = await  _googleSignIn.signIn();
@@ -51,8 +36,7 @@ class AuthController extends GetxController{
         final _authAccount = await account.authentication;
         final _credential = GoogleAuthProvider.credential(
           idToken: _authAccount.idToken,
-          accessToken: _authAccount.accessToken,
-        );
+          accessToken: _authAccount.accessToken);
 
         await _auth.signInWithCredential(_credential);
         await saveUser(account);
@@ -63,18 +47,7 @@ class AuthController extends GetxController{
     }
   }
 
-  User? getUser(){
-    _user.value = _auth.currentUser;
-    return _user.value;
-  }
 
-  saveUser(GoogleSignInAccount account){
-    userRF.doc(account.email).set({
-      "email": account.email,
-      "name": account.displayName,
-      "profilepic": account.photoUrl
-    });
-  }
 
   Future<void> signOut() async {
     AppLogger.d('Sign out');
@@ -85,12 +58,28 @@ class AuthController extends GetxController{
       AppLogger.e(e);
     }
   }
+  Future<void> saveUser(GoogleSignInAccount account) async{
+    userRF.doc(account.email).set({
+      "email": account.email,
+      "name": account.displayName,
+      "profilepic": account.photoUrl
+    });
+  }
+
+  User? getUser(){
+    _user.value = _auth.currentUser;
+    return _user.value;
+  }
+
+  bool isLoggedIn(){
+    return _auth.currentUser != null;
+  }
 
   void navigateToIntroduction(){
     Get.offAllNamed("/introduction");
 
   }
-  navigateToHomePage(){
+  void navigateToHomePage(){
     Get.offAllNamed(HomeScreen.routeName);
   }
 
@@ -107,7 +96,5 @@ class AuthController extends GetxController{
     Get.toNamed(LoginScreen.routeName);
   }
 
-  bool isLoggedIn(){
-    return _auth.currentUser != null;
-  }
+
 }

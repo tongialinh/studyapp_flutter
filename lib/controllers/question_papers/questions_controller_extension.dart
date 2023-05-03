@@ -1,8 +1,11 @@
+import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:studyapp_flutter/controllers/auth_controller.dart';
 import 'package:studyapp_flutter/controllers/question_papers/questions_controller.dart';
 import 'package:studyapp_flutter/firebase_ref/references.dart';
+
 
 extension QuestionsControllerExtension on QuestionsController{
 
@@ -35,7 +38,25 @@ extension QuestionsControllerExtension on QuestionsController{
           'time': questionPaperModel.timeSeconds-remainSeconds
         }
     );
-    batch.commit();
+    batch.set(
+        leaderBoardRF
+            .doc(questionPaperModel.id)
+            .collection('scores')
+            .doc(_user.email),
+        {
+          "points": double.parse(points),
+          "correct_count": '$correctQuestionCount/${allQuestions.length}',
+          "paper_id": questionPaperModel.id,
+          "user_id": _user.email,
+          "time": questionPaperModel.timeSeconds - remainSeconds
+        });
+    await batch.commit();
+    // Get.find<NotificationService>().showQuizCompletedNotification(
+    //     id: 1,
+    //     title: questionPaperModel.title,
+    //     body:  'You have just got $points points for ${questionPaperModel.title} -  Tap here to view leaderboard' ,
+    //     imageUrl: questionPaperModel.imageUrl,
+    //     payload: json.encode(questionPaperModel.toJson()));
     navigateHome();
   }
 }

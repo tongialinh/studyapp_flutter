@@ -1,15 +1,20 @@
 import 'package:get/get.dart';
+import 'package:studyapp_flutter/controllers/leaderboard_controller.dart';
+import 'package:studyapp_flutter/controllers/profile_controller.dart';
 import 'package:studyapp_flutter/controllers/question_papers/question_paper_controller.dart';
 import 'package:studyapp_flutter/controllers/question_papers/questions_controller.dart';
 import 'package:studyapp_flutter/controllers/zoom_drawer_controller.dart';
 import 'package:studyapp_flutter/screens/home/home_screen.dart';
 import 'package:studyapp_flutter/screens/introduction/introduction.dart';
+import 'package:studyapp_flutter/screens/leaderboard/leaderboard_screen.dart';
 import 'package:studyapp_flutter/screens/login/login_screen.dart';
 import 'package:studyapp_flutter/screens/question/answer_check_screen.dart';
 import 'package:studyapp_flutter/screens/question/question_screen.dart';
 import 'package:studyapp_flutter/screens/question/result_screen.dart';
 import 'package:studyapp_flutter/screens/question/test_overview_screen.dart';
 import 'package:studyapp_flutter/screens/splash/splash_screen.dart';
+
+import '../screens/login/profile_screen.dart';
 
 class AppRoutes {
   static List<GetPage> routes() => [
@@ -28,6 +33,19 @@ class AppRoutes {
         name: LoginScreen.routeName,
         page: ()=>LoginScreen()
     ),
+    GetPage(
+        page: () => const ProfileScreen(),
+        name: ProfileScreen.routeName,
+        binding: BindingsBuilder(() {
+          Get.put(QuestionPaperController());
+          Get.put(ProfileController());
+        })),
+    GetPage(
+        page: () => LeaderBoardScreen(),
+        name: LeaderBoardScreen.routeName,
+        binding: BindingsBuilder(() {
+          Get.put(LeaderBoardController());
+        })),
     GetPage(
         name: QuestionsScreen.routeName,
         page: ()=>QuestionsScreen(),

@@ -9,7 +9,8 @@ import 'package:studyapp_flutter/configs/themes/custom_text_styles.dart';
 import 'package:studyapp_flutter/configs/themes/ui_parameters.dart';
 import 'package:studyapp_flutter/controllers/question_papers/question_paper_controller.dart';
 import 'package:studyapp_flutter/models/question_paper_model.dart';
-import 'package:studyapp_flutter/widgets/app_icon_text.dart';
+import 'package:studyapp_flutter/screens/leaderboard/leaderboard_screen.dart';
+import 'package:studyapp_flutter/widgets/common/app_icon_text.dart';
 
 class QuestionCard extends GetView<QuestionPaperController> {
   const QuestionCard({Key? key, required this.model}) : super(key: key);
@@ -44,6 +45,7 @@ class QuestionCard extends GetView<QuestionPaperController> {
                         child: SizedBox(
                           height: Get.width * 0.15,
                           width: Get.width * 0.15,
+                          //child: model.imageUrl == null ||  model.imageUrl!.isEmpty ? null : Image.network(model.imageUrl!),
                           child: CachedNetworkImage(
                             imageUrl: model.imageUrl!,
                             placeholder: (context, url) => Container(
@@ -98,7 +100,7 @@ class QuestionCard extends GetView<QuestionPaperController> {
                   bottom: -_padding,
                   right: -_padding,
                   child: GestureDetector(
-                    child: Container(
+                    /*child: Container(
                       padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
                       child:  Icon(AppIcons.trophyOutLine, color: Colors.white),
                       decoration: BoxDecoration(
@@ -108,8 +110,24 @@ class QuestionCard extends GetView<QuestionPaperController> {
                           ),
                           color:primaryColorLight2
                       ),
+                    ),*/
+                    behavior : HitTestBehavior.translucent,
+                    onTap: () {
+                      // Get.find<NotificationService>().showQuizCompletedNotification(id: 1, title: 'Sampole', body: 'Sample', imageUrl: model.imageUrl, payload: json.encode(model.toJson())  );
+                      Get.toNamed(LeaderBoardScreen.routeName, arguments:model );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 20),
+                      child:  Icon(AppIcons.trophyOutLine, color: Colors.white),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(cardBorderRadius),
+                              bottomRight: Radius.circular(cardBorderRadius)
+                          ),
+                          color:primaryColorLight2
                     ),
-                  ))
+                  )
+              ))
             ],
           ),
         ),

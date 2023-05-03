@@ -49,6 +49,10 @@ dependencies:
   flutter_svg: ^2.0.5
   shimmer: ^2.0.0
   easy_separator: ^1.0.1
+  flutter_local_notifications: ^13.0.0
+  path_provider: ^2.0.14
+  shared_preferences: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

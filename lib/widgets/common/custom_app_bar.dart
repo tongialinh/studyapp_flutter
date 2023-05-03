@@ -5,7 +5,7 @@ import 'package:studyapp_flutter/configs/themes/app_icons.dart';
 import 'package:studyapp_flutter/configs/themes/custom_text_styles.dart';
 import 'package:studyapp_flutter/configs/themes/ui_parameters.dart';
 import 'package:studyapp_flutter/screens/question/test_overview_screen.dart';
-import 'package:studyapp_flutter/widgets/app_circle_button.dart';
+import 'package:studyapp_flutter/widgets/common/app_circle_button.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget{
   const CustomAppBar({Key? key,

@@ -18,7 +18,7 @@ class QuestionPaperController extends GetxController {
   }
 
   Future<void> getAllPapers() async {
-    List<String> imgName = ["biology", "chemistry", "maths", "physics"];
+  //  List<String> imgName = ["biology", "chemistry", "maths", "physics"];
     try {
       QuerySnapshot<Map<String, dynamic>> data = await questionPaperRF.get();
       final paperList = data.docs

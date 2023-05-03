@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:studyapp_flutter/configs/themes/app_colors.dart';
 import 'package:studyapp_flutter/configs/themes/ui_parameters.dart';
 import 'package:studyapp_flutter/controllers/zoom_drawer_controller.dart';
+import 'package:studyapp_flutter/screens/login/profile_screen.dart';
 
 class MyMenuScreen extends GetView<MyZoomDrawerController> {
   const MyMenuScreen({Key? key}) : super(key: key);
@@ -39,7 +40,7 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
                 ),
                 child: Column(
                   children: [
-                    Obx(()=>controller.user.value==null?
+                   /* Obx(()=>controller.user.value==null?
                     const SizedBox()
                         :Padding(
                           padding: const EdgeInsets.all(10.0),
@@ -51,7 +52,50 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
                             color:onSurfaceTextColor
                       ),
                     ),
-                        )),
+                        )),*/
+                    Obx(() => controller.user.value == null
+                        ? TextButton.icon(
+                        icon: const Icon(Icons.login_rounded),
+                        style: TextButton.styleFrom(
+                            padding: const EdgeInsets.symmetric(
+                                vertical: 10, horizontal: 15),
+                            elevation: 0,
+                            backgroundColor: Colors.white.withOpacity(0.5),
+                            primary: Colors.white),
+                        onPressed: () {
+                          controller.signIn();
+                        },
+                        label: const Text("Sign in"))
+                        : GestureDetector(
+                      onTap: () {
+                        Get.toNamed(ProfileScreen.routeName);
+                      },
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding:
+                          const EdgeInsets.only(top: 12, bottom: 10),
+                          child: CircleAvatar(
+                            foregroundImage:
+                            controller.user.value!.photoURL == null
+                                ? null
+                                : NetworkImage(
+                                controller.user.value!.photoURL!),
+                            backgroundColor: Colors.white,
+                            radius: 40,
+                          ),
+                        ),
+                      ),
+                    )),
+                    Obx(
+                          () => controller.user.value == null
+                          ? const SizedBox()
+                          : Text(controller.user.value!.displayName ?? '',
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w900,
+                              fontSize: 18,
+                              color: onSurfaceTextColor)),
+                    ),
                    // const Spacer(flex: 1,),
                     _DrawerButton(icon: Icons.school_outlined, label: "Score", onPressed: ()=>controller.score(),),
                    /* _DrawerButton(icon: Icons.facebook, label: "facebook", onPressed: ()=>controller.facebook(),),

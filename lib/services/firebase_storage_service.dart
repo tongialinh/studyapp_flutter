@@ -3,6 +3,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get/get.dart';
 import 'package:studyapp_flutter/firebase_ref/references.dart';
 
+import '../app_logger.dart';
+
 
 
 class FirebaseStorageService extends GetxService{
@@ -17,8 +19,8 @@ class FirebaseStorageService extends GetxService{
 
       var imgUrl = await urlRef.getDownloadURL();
       return imgUrl;
-    } catch (e){
-      print(e);
+    }  on Exception catch (e) {
+      AppLogger.e(e);
       return null;
     }
   }
