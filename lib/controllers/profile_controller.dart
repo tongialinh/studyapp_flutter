@@ -14,6 +14,13 @@ class ProfileController extends GetxController {
     getMyRecentTests();
     super.onReady();
   }
+  void signOut() {
+    Get.find<AuthController>().signOut();
+  }
+  void signIn() {
+    Get.find<AuthController>().navigateToLoginPage();
+  }
+
 
   final allRecentTest = <RecentTest>[].obs;
 

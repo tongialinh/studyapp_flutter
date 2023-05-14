@@ -15,6 +15,8 @@ import 'package:studyapp_flutter/screens/home/question_card.dart';
 import 'package:studyapp_flutter/widgets/common/app_circle_button.dart';
 import 'package:studyapp_flutter/widgets/common/content_area.dart';
 
+import '../login/profile_screen.dart';
+
 class HomeScreen extends GetView<MyZoomDrawerController> {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -47,40 +49,45 @@ class HomeScreen extends GetView<MyZoomDrawerController> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppCircleButton(
+                       /* AppCircleButton(
 
                           child: const Icon(AppIcons.menuLeft,),
                           onTap: controller.toogleDrawer,
-                        ),
+                        ),*/
 
                         const SizedBox(
                           height: 10,
 
                         ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 10),
-                          child: Row(
-                            children: [
-                              const Icon(AppIcons.peace),
-                              Builder(
-                                builder: (_){
-                                  final AuthController _auth = Get.find();
-                                  final user = _auth.getUser();
-                                  String _label = 'Hello mate';
-                                  if(user!= null){
-                                    _label = '  Hello ${user.displayName}';
+                        GestureDetector(
+                          onTap: () {
+                            Get.toNamed(ProfileScreen.routeName);},
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 10),
+                            child: Row(
+                              children: [
+                                const Icon(AppIcons.peace),
+                                Builder(
+                                  builder: (_){
+                                    final AuthController _auth = Get.find();
+                                    final user = _auth.getUser();
+                                    String _label = 'Hello mate';
+                                    if(user!= null){
+                                      _label = '  Hello ${user.displayName}';
+
+                                    }
+                                    return Text(_label, style: detailText.copyWith(color: onSurfaceTextColor, fontWeight: FontWeight.w700,));
                                   }
-                                  return Text(_label, style: detailText.copyWith(color: onSurfaceTextColor, fontWeight: FontWeight.w700,));
-                                }
 
-                              ),
+                                ),
 
-                             /* Text(
-                                "Hello ",
-                                style:
-                                detailText.copyWith(color: onSurfaceTextColor, fontWeight: FontWeight.w700),
-                              )*/
-                            ],
+                               /* Text(
+                                  "Hello ",
+                                  style:
+                                  detailText.copyWith(color: onSurfaceTextColor, fontWeight: FontWeight.w700),
+                                )*/
+                              ],
+                            ),
                           ),
                         ),
                         const Text(

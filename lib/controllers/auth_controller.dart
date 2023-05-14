@@ -19,7 +19,7 @@ class AuthController extends GetxController{
 
 
   void initAuth() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 7));
     _auth = FirebaseAuth.instance;
     _authStateChanges = _auth.authStateChanges();
     _authStateChanges.listen((User? user) {
@@ -46,7 +46,6 @@ class AuthController extends GetxController{
       AppLogger.e(error);
     }
   }
-
 
 
   Future<void> signOut() async {

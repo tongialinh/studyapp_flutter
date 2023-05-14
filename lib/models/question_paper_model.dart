@@ -179,6 +179,7 @@ class QuestionPaperModel {
 
 class Questions {
   final String id;
+  String? imageUrlQues;
   final String question;
   List<Answers> answers;
   final String? correctAnswer;
@@ -186,6 +187,7 @@ class Questions {
 
   Questions({
     required this.id,
+    this.imageUrlQues,
     required this.question,
     required this.answers,
     this.correctAnswer,
@@ -193,12 +195,14 @@ class Questions {
 
   Questions.fromSnapshot(QueryDocumentSnapshot<Map<String, dynamic>> snapshot)
       : id = snapshot.id,
+        imageUrlQues = snapshot['image_ques'],
         question = snapshot['question'],
         answers = [],
         correctAnswer = snapshot['correct_answer'];
 
   Questions.fromJson(Map<String, dynamic> json)
       : id = json['id'] as String,
+        imageUrlQues = json['image_ques'] as String?,
         question = json['question'] as String,
         answers =
         (json['answers'] as List).map((e) => Answers.fromJson(e)).toList(),
@@ -206,6 +210,7 @@ class Questions {
 
   Map<String, dynamic> toJson() => {
     'id': id,
+    'image_ques': imageUrlQues,
     'question': question,
     //'answers' : answers.toJson(),
     'correct_answer': correctAnswer

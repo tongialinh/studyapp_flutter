@@ -50,6 +50,7 @@ class DataUploader extends GetxController {
       for (var questions in paper.questions!){
         final questionPath=  questionRF(paperId: paper.id, questionId: questions.id);
         batch.set(questionPath, {
+          "image_ques": questions.imageUrlQues,
           "question":questions.question,
           "correct_answer": questions.correctAnswer
         });

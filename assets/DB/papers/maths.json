@@ -7,6 +7,7 @@
     "questions": [
         {
             "id": "ppr003q001",
+            "image_ques": "",
             "question": "Jenna has 82 apples. She gives Sam 28 apples. How many apples does Jenna have now?",
             "answers": [
                 {
@@ -30,6 +31,7 @@
         },
         {
             "id": "ppr003q002",
+            "image_ques": "",
             "question": "Max and Billy went to a farm! Max collected 18 eggs and Billy collected 29 eggs. How many eggs did they collect in total.",
             "answers": [
                 {
@@ -53,6 +55,7 @@
         },
         {
             "id": "ppr003q003",
+            "image_ques": "",
             "question": "what is 2/10 +15/100 equal?",
             "answers": [
                 {
@@ -76,6 +79,7 @@
         },
         {
             "id": "ppr003q004",
+            "image_ques": "",
             "question": "How many times greater is 2,340 than 234?",
             "answers": [
                 {
@@ -99,6 +103,7 @@
         },
         {
             "id": "ppr003q005",
+            "image_ques": "",
             "question": "How many sides does a quadrilateral have?",
             "answers": [
                 {

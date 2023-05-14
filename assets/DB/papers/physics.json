@@ -8,6 +8,7 @@
     "questions": [
         {
             "id": "ppr001q001",
+            "image_ques": "",
             "question": "Which one of the following is a good conductor of electricity?",
             "answers": [
                 {
@@ -31,6 +32,7 @@
         },
         {
             "id": "ppr001q002",
+            "image_ques": "",
             "question": "Which one of the following has maximum energy?",
             "answers": [
                 {
@@ -54,6 +56,7 @@
         },
         {
             "id": "ppr001q003",
+            "image_ques": "",
             "question": "Which law is involved in the act of cleaning a carpet by beating it with a stick?",
             "answers": [
                 {
@@ -77,6 +80,7 @@
         },
         {
             "id": "ppr001q004",
+            "image_ques": "",
             "question": "which of the following is a unit of eletric current:",
             "answers": [
                 {
@@ -100,6 +104,7 @@
         },
         {
             "id": "ppr001q005",
+            "image_ques": "",
             "question": "When an object is in motion, it's ................... must change.?",
             "answers": [
                 {

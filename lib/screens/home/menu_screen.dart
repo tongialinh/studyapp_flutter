@@ -23,7 +23,7 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
           child: Stack(
             children: [
               Positioned(
-                  top: 10,
+                  top: 5,
                   right: 0,
                   child: BackButton(
                     color: onSurfaceTextColor,
@@ -32,13 +32,15 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
                     },
                   )),
               Padding(
-                padding: const EdgeInsets.only(
-                   // right: MediaQuery.of(context).size.width*0.3
-                  top: 15,
+                padding:  EdgeInsets.only(
+                   // right: MediaQuery.of(context).size.width*0.3,
+                  top: 0,
                   left: 10,
                   bottom: 20,
                 ),
+
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                    /* Obx(()=>controller.user.value==null?
                     const SizedBox()
@@ -68,8 +70,7 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
                         label: const Text("Sign in"))
                         : GestureDetector(
                       onTap: () {
-                        Get.toNamed(ProfileScreen.routeName);
-                      },
+                        Get.toNamed(ProfileScreen.routeName);},
                       child: Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(
@@ -82,7 +83,7 @@ class MyMenuScreen extends GetView<MyZoomDrawerController> {
                                 : NetworkImage(
                                 controller.user.value!.photoURL!),
                             backgroundColor: Colors.white,
-                            radius: 40,
+                            radius: 20,
                           ),
                         ),
                       ),

@@ -50,4 +50,21 @@ class Dialogs{
     )) ?? false;
 
   }
+  static Future<bool> timeUpDialog() async{
+    return (await showDialog(
+      context: Get.overlayContext!,
+      builder: (context) =>  AlertDialog(
+        title:  const Text('Time up?'),
+        content:  const Text('het thoi gian ?'),
+        actions: <Widget>[
+
+          TextButton(
+            onPressed: () => Get.back(result: true),
+            child:  const Text('Yes'),
+          ),
+        ],
+      ),
+    )) ?? false;
+
+  }
 }

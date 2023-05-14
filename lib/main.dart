@@ -26,9 +26,7 @@ class MyApp extends StatelessWidget{
       getPages: AppRoutes.routes(),
       debugShowCheckedModeBanner: false,
     );
-
   }
-
 }
 
 Future<void> main() async {

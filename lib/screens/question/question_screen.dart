@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,6 +8,8 @@ import 'package:studyapp_flutter/configs/themes/custom_text_styles.dart';
 import 'package:studyapp_flutter/configs/themes/ui_parameters.dart';
 import 'package:studyapp_flutter/controllers/question_papers/questions_controller.dart';
 import 'package:studyapp_flutter/firebase_ref/loading_status.dart';
+import 'package:studyapp_flutter/models/question_paper_model.dart';
+import 'package:studyapp_flutter/screens/question/questiondetail_card.dart';
 import 'package:studyapp_flutter/screens/question/test_overview_screen.dart';
 import 'package:studyapp_flutter/widgets/common/background_decoration.dart';
 import 'package:studyapp_flutter/widgets/common/custom_app_bar.dart';
@@ -18,9 +21,12 @@ import 'package:studyapp_flutter/widgets/questions/countdown_timer.dart';
 
 class QuestionsScreen extends GetView<QuestionsController> {
   const QuestionsScreen({Key? key}) : super(key: key);
+
+
   static const String routeName = "/questionsscreen";
   @override
   Widget build(BuildContext context) {
+
     return WillPopScope(
       onWillPop: controller.onExitOfQuiz,
       child: Scaffold(
@@ -55,13 +61,15 @@ class QuestionsScreen extends GetView<QuestionsController> {
                   Expanded(
                       child: ContentArea(
                         child: SingleChildScrollView(
-                          padding: const EdgeInsets.only(top: 25),
+                          padding: const EdgeInsets.only(top: 0),
                           child: Column(
                             children: [
                               Text(
                                 controller.currentQuestion.value!.question,
                                 style: questionTS,
                               ),
+                              QuestionDetailCard(model: controller.currentQuestion.value!),
+
                               GetBuilder<QuestionsController>(
                                   id: 'answers_list',
                                   builder: (context) {

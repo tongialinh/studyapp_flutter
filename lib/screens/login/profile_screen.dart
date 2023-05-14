@@ -26,14 +26,14 @@ class ProfileScreen extends GetView<ProfileController>{
       body: BackgroundDecoration(
         showGradient: true,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Padding(
               padding: UIParamenters.mobileScreenPadding.copyWith(top: 0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
+                  Column(
                     children:  [
                       CircleAvatar(
                         radius: 35,
@@ -41,14 +41,17 @@ class ProfileScreen extends GetView<ProfileController>{
                       ),
                       const SizedBox(
                         width: 20,
+                        height: 20,
                       ),
                       Text(
                         _auth.getUser()!.displayName ?? '',
                         style: headerText,
                       )
                     ],
+
                   ),
-                  const Padding(
+                  _DrawerButton(icon: Icons.logout, label: "Logout", onPressed: ()=>controller.signOut(),),
+                 /* const Padding(
                     padding: EdgeInsets.only(top: 20),
                     child: Text(
                       'My recent tests ',
@@ -56,11 +59,11 @@ class ProfileScreen extends GetView<ProfileController>{
                           color: onSurfaceTextColor,
                           fontWeight: FontWeight.bold),
                     ),
-                  ),
+                  ),*/
                 ],
               ),
             ),
-            Expanded(
+          /*  Expanded(
               child: Obx(
                     () =>  ContentArea(
                   addPadding: false,
@@ -78,10 +81,32 @@ class ProfileScreen extends GetView<ProfileController>{
                   ),
                 ),
               ),
-            )
+            )*/
           ],
         ),
       ),
     );
   }
 }
+class _DrawerButton extends StatelessWidget {
+  const _DrawerButton({Key? key,
+    required this.icon,
+    required this.label,
+    this.onPressed
+  }) : super(key: key);
+  final IconData icon;
+  final String label;
+  final VoidCallback? onPressed;
+  @override
+  Widget build(BuildContext context) {
+    return TextButton.icon(
+        onPressed: onPressed,
+        icon: Icon(
+            icon,
+            size: 18
+        ),
+        label: Text(label));
+  }
+}
+
+

@@ -12,9 +12,13 @@ import 'package:studyapp_flutter/screens/question/result_screen.dart';
 import 'package:studyapp_flutter/widgets/dialogs/dialogue_widget.dart';
 
 import '../../app_logger.dart';
+import '../../services/firebase_storage_service.dart';
 import '../auth_controller.dart';
 
 class QuestionsController extends GetxController {
+
+  final allPaperImagesQues = <String>[].obs;
+
   final loadingStatus = LoadingStatus.loading.obs;
   late QuestionPaperModel questionPaperModel;
   final allQuestions = <Questions>[];
@@ -44,7 +48,7 @@ class QuestionsController extends GetxController {
     super.onClose();
   }
 
-  Future<bool> onExitOfQuiz() async{
+  /*Future<bool> onExitOfQuiz() async{
     return Dialogs.quizEndDialog( );
   }
 
@@ -61,7 +65,33 @@ class QuestionsController extends GetxController {
         remainSeconds--;
       }
     });
+  }*/
+
+  bool isFinished = false;
+
+  void _startTimer(int seconds) {
+    const duration = Duration(seconds: 1);
+    remainSeconds = seconds;
+    _timer = Timer.periodic(duration, (Timer timer) {
+      if (remainSeconds == 0) {
+        timer.cancel();
+        isFinished = true;
+        Dialogs.timeUpDialog();
+      } else {
+        int minutes = remainSeconds ~/ 60;
+        int seconds = remainSeconds % 59;
+        time.value = minutes.toString().padLeft(2, "0") + ":" + seconds.toString().padLeft(2, "0");
+        remainSeconds--;
+      }
+    });
   }
+
+  Future<bool> onExitOfQuiz() {
+
+      return Dialogs.quizEndDialog();
+
+  }
+
 
 
   Future<void> loadData(QuestionPaperModel questionPaper) async {
@@ -80,12 +110,16 @@ class QuestionsController extends GetxController {
       questionPaper.questions = questions;
       for(Questions _question in questionPaper.questions!){
         final QuerySnapshot<Map<String,dynamic>> answersQuery =
-
         await questionPaperRF.doc(questionPaper.id)
             .collection("questions")
             .doc(_question.id)
             .collection("answer")
             .get();
+
+        final imageUrlQues =
+        await Get.find<FirebaseStorageService>().getImageQues(_question.id);
+        _question.imageUrlQues = imageUrlQues;
+
         final answers = answersQuery.docs.map((answer) => Answers.fromSnapshot(answer))
             .toList();
         _question.answers = answers;

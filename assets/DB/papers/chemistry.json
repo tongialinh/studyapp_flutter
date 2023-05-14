@@ -3,10 +3,11 @@
     "title": "Chemistry",
     "image_url": "",
     "Description": "Basic Chemistry Multiple Choice Questions (MCQ) to practice basic Chemistry quiz answers",
-    "time_seconds": 900,
+    "time_seconds": 100,
     "questions": [
         {
             "id": "ppr002q001",
+            "image_ques": "",
             "question": "What is the chemical symbol for carbon?",
             "answers": [
                 {
@@ -30,6 +31,7 @@
         },
         {
             "id": "ppr002q002",
+            "image_ques": "",
             "question": "Molecules bonded together make up atoms.",
             "answers": [
                 {
@@ -45,6 +47,7 @@
         },
         {
             "id": "ppr002q003",
+            "image_ques": "",
             "question": "When we combined vinegar and baking soda and created carbon dioxide what was the product?",
             "answers": [
                 {
@@ -68,6 +71,7 @@
         },
         {
             "id": "ppr002q004",
+            "image_ques": "",
             "question": "which of the following is a unit of eletric current:",
             "answers": [
                 {
@@ -91,6 +95,7 @@
         },
         {
             "id": "ppr002q005",
+            "image_ques": "",
             "question": "In a chemical reaction or change a new substance is not created.?",
             "answers": [
                 {

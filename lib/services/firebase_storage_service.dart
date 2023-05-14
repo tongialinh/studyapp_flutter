@@ -24,4 +24,20 @@ class FirebaseStorageService extends GetxService{
       return null;
     }
   }
+  Future<String?> getImageQues(String? imgNameQues) async {
+    if(imgNameQues == null){
+      return null;
+    }
+    try {
+      var urlRef= firebaseStorage
+          .child("question_paper_images_ques")
+          .child('${imgNameQues.toLowerCase()}.png');
+
+      var imgUrl = await urlRef.getDownloadURL();
+      return imgUrl;
+    }  on Exception catch (e) {
+     // AppLogger.e(e);
+      return null;
+    }
+  }
 }
